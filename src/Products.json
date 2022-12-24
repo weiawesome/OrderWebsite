@@ -1,0 +1,89 @@
+{
+  "Data": [
+    {
+      "Type":"炒類",
+      "Name&Price": [
+        {
+          "Name": "炒飯",
+          "Price": 60
+        },
+        {
+          "Name": "炒麵",
+          "Price": 70
+        },
+        {
+          "Name": "炒粄條",
+          "Price": 70
+        },
+        {
+          "Name": "炒米粉",
+          "Price": 70
+        }
+      ]
+    },
+    {
+      "Type":"滷類",
+      "Name&Price": [
+        {
+          "Name": "滷飯",
+          "Price": 70
+        },
+        {
+          "Name": "滷麵",
+          "Price": 70
+        },
+        {
+          "Name": "滷粄條",
+          "Price": 70
+        },
+        {
+          "Name": "滷米粉",
+          "Price": 70
+        }
+      ]
+    },
+    {
+      "Type":"其它",
+      "Name&Price": [
+        {
+          "Name": "湯麵",
+          "Price": 70
+        },
+        {
+          "Name": "粄條湯",
+          "Price": 70
+        },
+        {
+          "Name": "米粉湯",
+          "Price": 70
+        },
+        {
+          "Name": "海產粥",
+          "Price": 70
+        }
+      ]
+    },
+    {
+      "Type":"湯類",
+      "Name&Price": [
+        {
+          "Name": "魚丸湯",
+          "Price": 25
+        },
+        {
+          "Name": "貢丸湯",
+          "Price": 25
+        },
+        {
+          "Name": "蛋花湯",
+          "Price": 30
+        },
+        {
+          "Name": "蛤蜊湯",
+          "Price": 40
+        }
+      ]
+    }
+  ]
+
+}
