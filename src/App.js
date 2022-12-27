@@ -104,8 +104,9 @@ export default function App() {
   }
 
   const SubmitOrder=()=>{
+    ws.emit('SentOrder',JSON.stringify(ProductInCar));
     if(BossIn){
-      console.log('hha');
+      alert('訂單已完成 但請仍以電話做確認 !')
     }
     else{
       alert('訂單已送出 但老闆還沒開工喔 !')
@@ -121,7 +122,7 @@ export default function App() {
           <h1 className="Title-text">莊媽媽魯麵</h1>
         </header>
 
-        <Modal open={ModalVisible} onClose={()=>{setModalVisible(false)}}>
+        <Modal open={ModalVisible} onClose={()=>{setModalVisible(false);setSpicy([true,false,false,false]);setNumOfBuy(1);}}>
           <div className='MyModal'>
             <h1>{Choose.Type}</h1>
 
@@ -185,7 +186,7 @@ export default function App() {
           </button>
         </div>
 
-        <div className='App-div-car' style={{position:'relative',marginTop:'5%',opacity:0}}>
+        <div className='App-div-car' style={{position:'relative',marginTop:'10%',opacity:0}}>
           <div className='App-btn-car'>
             <p className='App-text-car'>購物車</p>
           </div>

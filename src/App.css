@@ -85,7 +85,7 @@ input::-webkit-inner-spin-button {
   margin-right: 2.5%;
 }
 .App-div-div:active{
-  background-color: gray;
+  background-color: #c4c4c4;
 }
 .App-div-text{
   font-weight: bold;
@@ -126,6 +126,8 @@ input::-webkit-inner-spin-button {
   background-color: rgb(255, 12, 105,0.7);
 }
 .MyModal{
+  justify-self: center;
+  justify-content: center;
   overflow-y: scroll;
   border-width: medium;
   border-style: solid;
