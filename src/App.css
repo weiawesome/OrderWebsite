@@ -25,11 +25,11 @@ input::-webkit-inner-spin-button {
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: darkgray;
+  background-color: white;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color:rgb(255, 12, 105);
   flex:1;
   border-radius: 5px;
   justify-content: center;
@@ -61,10 +61,11 @@ input::-webkit-inner-spin-button {
 }
 .App-div{
   border-style: outset;
+  border-color: rgb(255, 12, 105);
   border-width: medium;
   border-radius: 5px;
   margin-top: 2.5%;
-  border-color: #282c34;
+  /*border-color: #282c34;*/
 }
 .App-div-title{
   margin-top: 2.5%;
@@ -78,7 +79,8 @@ input::-webkit-inner-spin-button {
   align-self: center;
   width: 95%;
   border-radius: 5px;
-  background-color: aliceblue;
+  /*background-color: aliceblue;*/
+  border-color: rgb(255, 12, 105);
   margin-left: 2.5%;
   margin-right: 2.5%;
 }
@@ -127,10 +129,10 @@ input::-webkit-inner-spin-button {
   overflow-y: scroll;
   border-width: medium;
   border-style: solid;
-  margin-left: 5%;
-  margin-top: 5%;
-  width: 90%;
-  height: 90%;
+  margin-left: 10%;
+  margin-top: 10%;
+  width: 80%;
+  height: 80%;
   background-color: aliceblue ;
   border-radius: 5px;
   align-self: center;

@@ -2,7 +2,7 @@ import './App.css';
 import Products from './Products.json';
 import React, {useEffect, useState} from 'react';
 import Modal from '@mui/material/Modal';
-import {Checkbox} from "@mui/material";
+import {Alert, Checkbox} from "@mui/material";
 import webSocket from 'socket.io-client'
 
 export default function App() {
@@ -14,15 +14,16 @@ export default function App() {
   const [ProductInCar,setProductInCar]=useState([]);
   const [CarVisible,setCarVisible]=useState(false);
   const [ws,setWs] = useState(null);
-  const [BossIn,setBossIn]=useState(false);
+  const [BossIn,setBossIn]=useState(true);
 
   const connectWebSocket = () => {
     //開啟
-    setWs(webSocket('http://localhost:8000'))
+    setWs(webSocket('https://websocket-for-orderwebsite.onrender.com/'))
   }
   const initWebSocket = () => {
     ws.on('Boss', message => {
       let tmp=JSON.parse(message);
+      console.log(message);
       setBossIn(tmp.Boss);
     })
   }
@@ -101,9 +102,21 @@ export default function App() {
     tmp.splice(index,1);
     setProductInCar(tmp);
   }
+
+  const SubmitOrder=()=>{
+    if(BossIn){
+      console.log('hha');
+    }
+    else{
+      alert('訂單已送出 但老闆還沒開工喔 !')
+    }
+  }
+
   return (
       <div className="App">
-
+        {(ws!=null && (!BossIn))&&(
+            <Alert severity="warning" style={{alignSelf:'center'}}>老闆還沒開工喔 ! (但還是可以先點~~~</Alert>
+        )}
         <header className="App-header">
           <h1 className="Title-text">莊媽媽魯麵</h1>
         </header>
@@ -143,7 +156,7 @@ export default function App() {
           </div>
         </Modal>
 
-        <body className="App-body">
+        <div className="App-body">
         {Products.Data.map((item,index)=>{
           return(
               <div className='App-div' key={index}>
@@ -164,7 +177,7 @@ export default function App() {
               </div>
           )
         })}
-        </body>
+        </div>
 
         <div className='App-div-car'>
           <button className='App-btn-car' onClick={()=>{setCarVisible(true);if(ws===null) {connectWebSocket();}}}>
@@ -172,7 +185,7 @@ export default function App() {
           </button>
         </div>
 
-        <div className='App-div-car' style={{position:'relative',marginTop:'3%',opacity:0}}>
+        <div className='App-div-car' style={{position:'relative',marginTop:'5%',opacity:0}}>
           <div className='App-btn-car'>
             <p className='App-text-car'>購物車</p>
           </div>
@@ -210,7 +223,7 @@ export default function App() {
               )
             })}
 
-            <button className='App-Modal-submit' onClick={JoinToCar}>
+            <button className='App-Modal-submit' onClick={SubmitOrder}>
               <p className='App-text-car'>完成訂單</p>
             </button>
           </div>
