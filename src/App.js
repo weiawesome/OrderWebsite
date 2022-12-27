@@ -17,8 +17,8 @@ export default function App() {
   const [BossIn,setBossIn]=useState(true);
 
   const connectWebSocket = () => {
-    //開啟
-    setWs(webSocket('https://websocket-for-orderwebsite.onrender.com/'))
+    setWs(webSocket('https://websocket-for-orderwebsite.onrender.com/'));
+    // setWs(webSocket('http://localhost:8000'));
   }
   const initWebSocket = () => {
     ws.on('Boss', message => {
@@ -30,9 +30,7 @@ export default function App() {
 
   useEffect(()=>{
     if(ws){
-      //連線成功在 console 中打印訊息
       console.log('Success connect!')
-      //設定監聽
       initWebSocket()
     }
   },[ws])
@@ -104,12 +102,22 @@ export default function App() {
   }
 
   const SubmitOrder=()=>{
-    ws.emit('SentOrder',JSON.stringify(ProductInCar));
-    if(BossIn){
-      alert('訂單已完成 但請仍以電話做確認 !')
+    if(ProductInCar.length===0){
+      alert('非常抱歉 目前無商品於購物車中 !');
+      return;
+    }
+    if(ws!=null){
+      ws.emit('SentOrder',JSON.stringify(ProductInCar));
+      setProductInCar([]);
+      if(BossIn){
+        alert('訂單已完成 但請仍以電話做確認 !');
+      }
+      else{
+        alert('訂單已送出 但老闆還沒開工喔 !');
+      }
     }
     else{
-      alert('訂單已送出 但老闆還沒開工喔 !')
+      alert('伺服器未能正常開啟 請稍後再訂購 !');
     }
   }
 
