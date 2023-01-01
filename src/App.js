@@ -16,28 +16,21 @@ export default function App() {
   const [ws,setWs] = useState(null);
   const [BossIn,setBossIn]=useState(true);
 
-  const connectWebSocket = () => {
+  useEffect(()=>{
     setWs(webSocket('https://websocket-for-orderwebsite.onrender.com/'));
     // setWs(webSocket('http://localhost:8000'));
-  }
-  const initWebSocket = () => {
-    ws.on('Boss', message => {
-      let tmp=JSON.parse(message);
-      console.log(message);
-      setBossIn(tmp.Boss);
-    })
-  }
-
+  },[])
   useEffect(()=>{
-    if(ws){
-      console.log('Success connect!')
-      initWebSocket()
-    }
+      if(ws){
+        console.log('Success connect!')
+        ws.on('Boss', message => {
+          let tmp=JSON.parse(message);
+          console.log(message);
+          setBossIn(tmp.Boss);
+        })
+      }
   },[ws])
 
-  const sendMessage = () => {
-    ws.emit('getMessage', '只回傳給發送訊息的 client');
-  }
   const SpicyChange=(index)=>{
     let tmp=[...Spicy];
     tmp=[false,false,false,false];
@@ -107,7 +100,17 @@ export default function App() {
       return;
     }
     if(ws!=null){
-      ws.emit('SentOrder',JSON.stringify(ProductInCar));
+      let tmp=[]
+      ProductInCar.map((item,index)=>{
+        return (
+            tmp=tmp.concat({'DishName':item.Name,'Number':item.Number,'Spicy':item.Spicy,'Details':item.Details})
+        )
+      })
+      const data={
+        'Orders':tmp
+      }
+      console.log(data);
+      ws.emit('SentOrder',JSON.stringify(data));
       setProductInCar([]);
       if(BossIn){
         alert('訂單已完成 但請仍以電話做確認 !');
@@ -189,7 +192,7 @@ export default function App() {
         </div>
 
         <div className='App-div-car'>
-          <button className='App-btn-car' onClick={()=>{setCarVisible(true);if(ws===null) {connectWebSocket();}}}>
+          <button className='App-btn-car' onClick={()=>{setCarVisible(true);}}>
             <p className='App-text-car'>購物車</p>
           </button>
         </div>
