@@ -61,10 +61,10 @@ export default function App() {
     else if(Spicy[1]){
       spicy='小辣';
     }
-    else if(Spicy[1]){
+    else if(Spicy[2]){
       spicy='中辣';
     }
-    else if(Spicy[1]){
+    else if(Spicy[3]){
       spicy='大辣';
     }
     ProductInCar.push({'Type':Choose.Type,'TypeIndex':Choose.TypeIndex,'Name':Choose.Name,'Price':Choose.Price,'ProductIndex':Choose.ProductIndex,'Number':NumOfBuy,'Spicy':spicy,'Details':Details});
